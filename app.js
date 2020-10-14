@@ -62,8 +62,7 @@ function init(){
                 let intern = new Intern(res.name, res.id, res.email, res.school);
                 teamArray.push(intern);
                 if(input.add === "Yes"){
-                    console.log("************** Add another team member **************");
-                    init();
+                    createAdditionalEmployee();
                 }else{
                     buildHTML();
                 };
@@ -90,8 +89,7 @@ function init(){
                 let manager = new Manager(res.name, res.id, res.email, res.officeNumber);
                 teamArray.push(manager);
                 if(input.add === "Yes"){
-                    console.log("************** Add another team member **************");
-                    init();
+                    createAdditionalEmployee();
                 }else{
                     buildHTML();
                 }
@@ -118,8 +116,7 @@ function init(){
                 let engineer = new Engineer(res.name, res.id, res.email, res.gitHub);
                 teamArray.push(engineer);
                 if(input.add === "Yes"){
-                    console.log("************** Add another team member **************");
-                    init();
+                    createAdditionalEmployee();
                 }else{
                     buildHTML();
                 }
@@ -147,6 +144,11 @@ function buildHTML(){
 
         console.log("Successfully created 'team.html' in " + OUTPUT_DIR)
     });
+};
+
+function createAdditionalEmployee(){
+    console.log("************** Add another team member **************");
+    init();
 };
 
 init();
