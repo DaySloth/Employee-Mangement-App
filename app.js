@@ -36,3 +36,23 @@ function getUserData(){
         choices: ["Intern", "Manager", "Engineer"]
     }
 ])};
+
+function init(){
+    getUserData().then(function(res){
+        res.id = uuidv4();
+        if(res.role === "Intern"){
+            function ask(){
+                return inquirer.prompt([
+                    {
+                        type: "input",
+                        name: "school",
+                        message: "Where do they attend school?"
+                    },
+                    {
+                        type: "list",
+                        name: "add",
+                        message: "Would you like to add another Team Member?",
+                        choices: ["Yes", "No"]
+                    }
+                ]);
+            };
