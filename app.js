@@ -56,3 +56,74 @@ function init(){
                     }
                 ]);
             };
+
+            ask().then(function(input){
+                res.school = input.school;
+                let intern = new Intern(res.name, res.id, res.email, res.school);
+                teamArray.push(intern);
+                if(input.add === "Yes"){
+                    console.log("************** Add another team member **************");
+                    init();
+                }else{
+                    buildHTML();
+                };
+            });
+        }else if(res.role === "Manager"){
+            function ask(){
+                return inquirer.prompt([
+                    {
+                        type: "input",
+                        name: "num",
+                        message: "What is their office number?"
+                    },
+                    {
+                        type: "list",
+                        name: "add",
+                        message: "Would you like to add another Team Member?",
+                        choices: ["Yes", "No"]
+                    }
+                ])
+            };
+
+            ask().then(function(input){
+                res.officeNumber = input.num;
+                let manager = new Manager(res.name, res.id, res.email, res.officeNumber);
+                teamArray.push(manager);
+                if(input.add === "Yes"){
+                    console.log("************** Add another team member **************");
+                    init();
+                }else{
+                    buildHTML();
+                }
+            });
+        }else{
+            function ask(){
+                return inquirer.prompt([
+                    {
+                        type: "input",
+                        name: "gitHub",
+                        message: "What is their GitHub?"
+                    },
+                    {
+                        type: "list",
+                        name: "add",
+                        message: "Would you like to add another Team Member?",
+                        choices: ["Yes", "No"]
+                    }
+                ])
+            };
+
+            ask().then(function(input){
+                res.gitHub = input.gitHub;
+                let engineer = new Engineer(res.name, res.id, res.email, res.gitHub);
+                teamArray.push(engineer);
+                if(input.add === "Yes"){
+                    console.log("************** Add another team member **************");
+                    init();
+                }else{
+                    buildHTML();
+                }
+            });
+        };
+    });
+};
