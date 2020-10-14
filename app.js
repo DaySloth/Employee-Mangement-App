@@ -127,3 +127,26 @@ function init(){
         };
     });
 };
+
+function buildHTML(){
+    const returnedHTML = render(teamArray);
+    fs.mkdir(OUTPUT_DIR, function(err){
+        if(err){
+            if(err.code === "EEXIST"){
+                console.log("file already exists")
+            }else{
+                throw err;
+            }
+        }
+    });
+
+    fs.writeFile(outputPath, returnedHTML, function(err){
+        if(err){
+            throw err
+        }
+
+        console.log("Successfully created 'team.html' in " + OUTPUT_DIR)
+    });
+};
+
+init();
