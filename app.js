@@ -12,3 +12,27 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const teamArray = [];
+
+
+/* Uses inquirer to gather information about the development team members,
+and to create objects for each team member */
+function getUserData(){
+
+    return inquirer.prompt([
+    {
+        type: "input",
+        name: "name",
+        message: "Person's Name?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Person's Email?"
+    },
+    {
+        type: "list",
+        name: "role",
+        message: "What is their role?",
+        choices: ["Intern", "Manager", "Engineer"]
+    }
+])};
